@@ -7,16 +7,15 @@ on:
 
 jobs:
   pr_check:
-    environment:
-      name: 'Develop'
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: setup project
         uses: ./.github/actions/setup-project
+
 
 
         
