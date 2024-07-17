@@ -1,11 +1,11 @@
-name: Build and deploy to netlify 
+name: Build and deploy to netlify
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -23,4 +23,6 @@ jobs:
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deployed from GitHub Actions'
-        
+
+      - name: Run e2e tests
+        run: CI=${{ secrets.CI }} & E2E_BASE_URL=${{ secrets.E2E_BASE_URL }} npm run test:e2e
